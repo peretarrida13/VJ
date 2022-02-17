@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 #include "Quad.h"
+#include <iostream>
 
 
 Quad *Quad::createQuad(float x, float y, float width, float height, ShaderProgram &program)
@@ -13,7 +14,8 @@ Quad *Quad::createQuad(float x, float y, float width, float height, ShaderProgra
 
 Quad::Quad(float x, float y, float width, float height, ShaderProgram &program)
 {
-	float vertices[12] = {x, y, x + width, y, x + width, y + height, x, y, x + width, y + height, x, y + height };
+	float vertices[12] = { x, y, x + width, y, x + width, y + height, x, y, x + width, y + height, x, y + height };
+	
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
