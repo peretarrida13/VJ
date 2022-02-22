@@ -1,4 +1,2 @@
-﻿  Scene.cpp
-  main.cpp
-  Generando código...
-  02-primitives.vcxproj -> C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\OpenGL\02-primitives\Debug\02-primitives.exe
+﻿  Quad.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\OpenGL\02-primitives\02-primitives\Quad.cpp(17,129): error C2078: hay demasiados inicializadores

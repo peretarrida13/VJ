@@ -34,6 +34,11 @@ private:
 	ShaderProgram program;
 	float currentTime;
 	glm::mat4 projection;
+	float topRightX = 384.f;
+	bool left = true;
+	float topLeftX = 128.f;
+	float scaleRight = 1;
+	float scaleLeft = 1;
 
 };
 
