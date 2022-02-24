@@ -27,7 +27,7 @@ public:
 	void init();
 	void update(int deltaTime);
 	void render();
-
+	string b = "Bolet";
 private:
 	void initShaders();
 
@@ -39,7 +39,10 @@ private:
 	float currentTime;
 	glm::mat4 projection;
 	Text text;
-
+	int r = 0;
+	float x = 30.f;
+	bool left = false;
+	
 };
 
 

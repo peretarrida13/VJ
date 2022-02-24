@@ -27,6 +27,11 @@ void Game::keyPressed(int key)
 {
 	if(key == 27) // Escape code
 		bPlay = false;
+	if (key == 49) {
+		if (pressed) scene.b = "Bolet";
+		else scene.b = "";
+		pressed = !pressed;
+	}
 	keys[key] = true;
 }
 
