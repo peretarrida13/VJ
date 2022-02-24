@@ -37,7 +37,8 @@ private:
 	ShaderProgram simpleProgram, texProgram;
 	float currentTime;
 	glm::mat4 projection;
-
+	float x = 30.f;
+	bool left = false;
 };
 
 
