@@ -1,0 +1,15 @@
+﻿  Game.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\Game.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'GL/glew.h': No such file or directory
+  main.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\main.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'GL/glew.h': No such file or directory
+  Scene.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\Scene.cpp(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'glm/gtc/matrix_transform.hpp': No such file or directory
+  Shader.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\Shader.h(6,10): fatal error C1083: No se puede abrir el archivo incluir: 'GL/glew.h': No such file or directory
+  ShaderProgram.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\ShaderProgram.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'glm/gtc/type_ptr.hpp': No such file or directory
+  Texture.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\Texture.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'SOIL.h': No such file or directory
+  TileMap.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\2D\01-TBE\01-TBE\TileMap.h(5,10): fatal error C1083: No se puede abrir el archivo incluir: 'glm/glm.hpp': No such file or directory
+  Generando código...
