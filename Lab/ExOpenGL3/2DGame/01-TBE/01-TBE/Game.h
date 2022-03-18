@@ -43,6 +43,8 @@ private:
 	Scene scene;                      // Scene to render
 	bool keys[256], specialKeys[256]; // Store key states so that 
 	                                  // we can have access at any time
+	bool startPage = true;
+	int gameScene = 0;
 
 };
 

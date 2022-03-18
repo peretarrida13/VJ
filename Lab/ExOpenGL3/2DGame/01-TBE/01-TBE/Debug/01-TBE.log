@@ -1,9 +1,23 @@
 ﻿  Game.cpp
-  Scene.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(30,21): error C2146: error de sintaxis: falta ')' delante del identificador 'and'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(30,21): error C2065: 'and': identificador no declarado
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(30,25): error C2146: error de sintaxis: falta ';' delante del identificador 'key'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(30,34): error C2059: error de sintaxis: ')'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(31,20): error C2059: error de sintaxis: ';'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(34,7): error C2065: 'key': identificador no declarado
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(34,14): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(34,18): error C2440: 'inicializando': no se puede realizar la conversión de 'bool' a 'int [1]'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(34,12): message : No hay conversiones a tipos de matriz, aunque hay conversiones a referencias o punteros a matrices
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(35,1): error C2059: error de sintaxis: '}'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(35,1): error C2143: error de sintaxis: falta ';' delante de '}'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(38,1): error C2143: error de sintaxis: falta ';' delante de '{'
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(38,1): error C2447: '{': falta el encabezado de función (¿lista formal de estilo anterior?)
   main.cpp
+  Player.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Sprite.h(9,10): fatal error C1083: No se puede abrir el archivo incluir: 'AnimKeyframes.h': No such file or directory
+  Scene.cpp
+  Sprite.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Sprite.h(9,10): fatal error C1083: No se puede abrir el archivo incluir: 'AnimKeyframes.h': No such file or directory
+  TileMap.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\TileMap.cpp(53,7): warning C4101: 'tile': variable local sin referencia
   Generando código...
-SOIL.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_DXT.obj)' o en 'C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(image_helper.obj)' o en 'C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(SOIL.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(SOIL.obj)' o en 'C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: no se encontró PDB 'vc100.pdb' con 'SOIL.lib(stb_image_aug.obj)' o en 'C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\Debug\vc100.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  01-TBE.vcxproj -> C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\Debug\01-TBE.exe

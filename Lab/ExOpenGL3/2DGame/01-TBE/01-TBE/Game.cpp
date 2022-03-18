@@ -25,8 +25,12 @@ void Game::render()
 
 void Game::keyPressed(int key)
 {
-	if(key == 27) // Escape code
+	if (key == 27) // Escape code
 		bPlay = false;
+	else if (key == 88 and key == 67) {
+		startPage = false;
+		gameScene = 1;
+	}
 	keys[key] = true;
 }
 
