@@ -89,9 +89,9 @@ bool TileMap::loadLevel(const string &levelFile)
 				map[j*mapSize.x+i] = 0;
 			else*/
 			map[j*mapSize.x+i] = entry;
-			//cout << entry  << ' ';
+			cout << entry  << ' ';
 		}
-		//cout << endl;
+		cout << endl;
 		//fin.get(tile);
 	}
 	fin.close();

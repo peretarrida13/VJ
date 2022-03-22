@@ -7,6 +7,7 @@
 #include "ShaderProgram.h"
 
 
+
 // Class Tilemap is capable of loading a tile map from a text file in a very
 // simple format (see level01.txt for an example). With this information
 // it builds a single VBO that contains all tiles. As a result the render
@@ -31,6 +32,7 @@ public:
 	bool collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) const;
 	bool collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) const;
 	bool collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, int *posY) const;
+	bool collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int* posY) const;
 	
 private:
 	bool loadLevel(const string &levelFile);

@@ -12,12 +12,8 @@ C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\
 C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(35,1): error C2143: error de sintaxis: falta ';' delante de '}'
 C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(38,1): error C2143: error de sintaxis: falta ';' delante de '{'
 C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Game.cpp(38,1): error C2447: '{': falta el encabezado de función (¿lista formal de estilo anterior?)
-  main.cpp
   Player.cpp
 C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Sprite.h(9,10): fatal error C1083: No se puede abrir el archivo incluir: 'AnimKeyframes.h': No such file or directory
-  Scene.cpp
   Sprite.cpp
 C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\Sprite.h(9,10): fatal error C1083: No se puede abrir el archivo incluir: 'AnimKeyframes.h': No such file or directory
-  TileMap.cpp
-C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\01-TBE\01-TBE\TileMap.cpp(53,7): warning C4101: 'tile': variable local sin referencia
   Generando código...
