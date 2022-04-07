@@ -49,33 +49,36 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
-	if (Game::instance().getKey('x')) {
+	if (Game::instance().getKey('x') && dash) {
+		this->dash = false;
 		cout << sprite->animation() << endl;
 		if (sprite->animation() == 0) {
-			posPlayer.x -= 4;
+			posPlayer.x -= 5;
 			if (map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16)))
 			{
-				posPlayer.x += 4;
+				this->dash = true;
+				posPlayer.x += 5;
 				sprite->changeAnimation(STAND_LEFT);
 			}
 		}
 		else if (sprite->animation() == 1) {
-			posPlayer.x += 4;
+			posPlayer.x += 5;
 			if (map->collisionMoveRight(posPlayer, glm::ivec2(16, 16)))
 			{
-				posPlayer.x -= 4;
+				this->dash = true;
+				posPlayer.x -= 5;
 				sprite->changeAnimation(STAND_RIGHT);
 			}
 		}
 	}
-
-	if(Game::instance().getSpecialKey(GLUT_KEY_LEFT))
+	else if(Game::instance().getSpecialKey(GLUT_KEY_LEFT))
 	{
 		if(sprite->animation() != MOVE_LEFT)
 			sprite->changeAnimation(MOVE_LEFT);
 		posPlayer.x -= 2;
 		if(map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16)))
 		{
+			this->dash = true;
 			posPlayer.x += 2;
 			sprite->changeAnimation(STAND_LEFT);
 		}
@@ -87,6 +90,7 @@ void Player::update(int deltaTime)
 		posPlayer.x += 2;
 		if(map->collisionMoveRight(posPlayer, glm::ivec2(16, 16)))
 		{
+			this->dash = true;
 			posPlayer.x -= 2;
 			sprite->changeAnimation(STAND_RIGHT);
 		}
@@ -123,6 +127,7 @@ void Player::update(int deltaTime)
 		posPlayer.y += FALL_STEP;
 		if(map->collisionMoveDown(posPlayer, glm::ivec2(16, 16), &posPlayer.y))
 		{
+			this->dash = true;
 			if(Game::instance().getSpecialKey(GLUT_KEY_UP))
 			{
 				bJumping = true;
