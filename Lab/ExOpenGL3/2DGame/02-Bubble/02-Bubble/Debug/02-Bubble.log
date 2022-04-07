@@ -1,2 +1,6 @@
-﻿  Player.cpp
+﻿  Game.cpp
+  Player.cpp
+  Scene.cpp
+  main.cpp
+  Generando código...
   02-Bubble.vcxproj -> C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\02-Bubble\Debug\02-Bubble.exe

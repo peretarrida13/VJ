@@ -1,6 +1,6 @@
 TILEMAP
 16 16 							-- Size of tile map in tiles
-8 8 							-- Tile size & block size
+20 20 							-- Tile size & block size
 images/Celeste.png 	-- Tilesheet
 16 16 								-- Number of tiles in tilesheet
 19 49 34 34 36 34 34 50 50 50 50 50 51 0 0 33 
