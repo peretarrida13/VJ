@@ -6,9 +6,9 @@
 #include "Game.h"
 
 
-#define JUMP_ANGLE_STEP 5
-#define JUMP_HEIGHT 100
-#define FALL_STEP 1
+#define JUMP_ANGLE_STEP 4
+#define JUMP_HEIGHT 96
+#define FALL_STEP 4
 
 
 enum PlayerAnims
@@ -49,20 +49,9 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
-	if(Game::instance().getSpecialKey(GLUT_KEY_LEFT))
-	{
-		if(sprite->animation() != MOVE_LEFT)
-			sprite->changeAnimation(MOVE_LEFT);
-		posPlayer.x -= 1;
-		if(map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16)))
-		{
-			posPlayer.x += 1;
-			sprite->changeAnimation(STAND_LEFT);
-		}
-	}
-	else if (Game::instance().getKey('c')) {
-		cout << 'c' << endl;
-		if (sprite->animation() == MOVE_LEFT) {
+	if (Game::instance().getKey('x')) {
+		cout << sprite->animation() << endl;
+		if (sprite->animation() == 0) {
 			posPlayer.x -= 4;
 			if (map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16)))
 			{
@@ -70,7 +59,7 @@ void Player::update(int deltaTime)
 				sprite->changeAnimation(STAND_LEFT);
 			}
 		}
-		else if (sprite->animation() == MOVE_RIGHT) {
+		else if (sprite->animation() == 1) {
 			posPlayer.x += 4;
 			if (map->collisionMoveRight(posPlayer, glm::ivec2(16, 16)))
 			{
@@ -78,16 +67,27 @@ void Player::update(int deltaTime)
 				sprite->changeAnimation(STAND_RIGHT);
 			}
 		}
+	}
 
+	if(Game::instance().getSpecialKey(GLUT_KEY_LEFT))
+	{
+		if(sprite->animation() != MOVE_LEFT)
+			sprite->changeAnimation(MOVE_LEFT);
+		posPlayer.x -= 2;
+		if(map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16)))
+		{
+			posPlayer.x += 2;
+			sprite->changeAnimation(STAND_LEFT);
+		}
 	}
 	else if(Game::instance().getSpecialKey(GLUT_KEY_RIGHT))
 	{
 		if(sprite->animation() != MOVE_RIGHT)
 			sprite->changeAnimation(MOVE_RIGHT);
-		posPlayer.x += 1;
+		posPlayer.x += 2;
 		if(map->collisionMoveRight(posPlayer, glm::ivec2(16, 16)))
 		{
-			posPlayer.x -= 1;
+			posPlayer.x -= 2;
 			sprite->changeAnimation(STAND_RIGHT);
 		}
 	}
@@ -110,7 +110,7 @@ void Player::update(int deltaTime)
 		}
 		else
 		{
-			posPlayer.y = int(startY - 20 * sin(3.14159f * jumpAngle / 180.f)); 
+			posPlayer.y = int(startY - 50 * sin(3.14159f * jumpAngle / 180.f)); 
 			if (jumpAngle < 90) {
 				bJumping = !map->collisionMoveUp(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
 			}
