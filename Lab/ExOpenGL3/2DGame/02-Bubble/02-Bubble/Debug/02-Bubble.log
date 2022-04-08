@@ -1,2 +1,8 @@
-﻿  Player.cpp
+﻿  Game.cpp
+  Player.cpp
+  Scene.cpp
+  TileMap.cpp
+C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\02-Bubble\02-Bubble\TileMap.cpp(53,7): warning C4101: 'tile': variable local sin referencia
+  main.cpp
+  Generando código...
   02-Bubble.vcxproj -> C:\Users\Pere Tarrida Domingo\Desktop\UNI_Actual\VJ\Lab\ExOpenGL3\2DGame\02-Bubble\Debug\02-Bubble.exe
