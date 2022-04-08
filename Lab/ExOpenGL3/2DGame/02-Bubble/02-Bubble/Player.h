@@ -30,6 +30,8 @@ private:
 	TileMap *map;
 	bool dash = true;
 
+	int last_animation;
+
 };
 
 

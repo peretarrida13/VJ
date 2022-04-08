@@ -13,7 +13,7 @@
 
 enum PlayerAnims
 {
-	STAND_LEFT, STAND_RIGHT, MOVE_LEFT, MOVE_RIGHT
+	STAND_LEFT, STAND_RIGHT, STAND_UP_R, STAND_UP_L, STAND_DOWN_R, STAND_DOWN_L, MOVE_LEFT, MOVE_RIGHT
 };
 
 
@@ -22,7 +22,7 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 	bJumping = false;
 	spritesheet.loadFromFile("images/madelein.png", TEXTURE_PIXEL_FORMAT_RGBA);
 	sprite = Sprite::createSprite(glm::ivec2(16, 16), glm::vec2(0.25, 0.25), &spritesheet, &shaderProgram);
-	sprite->setNumberAnimations(4);
+	sprite->setNumberAnimations(8);
 	
 		sprite->setAnimationSpeed(STAND_LEFT, 8);
 		sprite->addKeyframe(STAND_LEFT, glm::vec2(0.f, 0.f));
@@ -30,6 +30,18 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 		sprite->setAnimationSpeed(STAND_RIGHT, 8);
 		sprite->addKeyframe(STAND_RIGHT, glm::vec2(0.25f, 0.f));
 		
+		sprite->setAnimationSpeed(STAND_UP_R, 8);
+		sprite->addKeyframe(STAND_UP_R, glm::vec2(0.75, 0.0));
+
+		sprite->setAnimationSpeed(STAND_UP_L, 8);
+		sprite->addKeyframe(STAND_UP_L, glm::vec2(0.75, 0.25));
+
+		sprite->setAnimationSpeed(STAND_DOWN_L, 8);
+		sprite->addKeyframe(STAND_DOWN_L, glm::vec2(0.5, 0.0));
+
+		sprite->setAnimationSpeed(STAND_DOWN_R, 8);
+		sprite->addKeyframe(STAND_DOWN_R, glm::vec2(0.5, 0.25));
+
 		sprite->setAnimationSpeed(MOVE_LEFT, 8);
 		sprite->addKeyframe(MOVE_LEFT, glm::vec2(0.f, 0.f));
 		sprite->addKeyframe(MOVE_LEFT, glm::vec2(0.f, 0.25f));
@@ -49,6 +61,10 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 void Player::update(int deltaTime)
 {
 	sprite->update(deltaTime);
+	if (sprite->animation() == STAND_UP_R || sprite->animation() == STAND_DOWN_L || sprite->animation() == STAND_UP_L || sprite->animation() == STAND_DOWN_R) {
+		sprite->changeAnimation(last_animation);
+	}
+
 	if (Game::instance().getKey('x') && dash) {
 		this->dash = false;
 		cout << sprite->animation() << endl;
@@ -95,6 +111,20 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(STAND_RIGHT);
 		}
 	}
+	else if (Game::instance().getSpecialKey(GLUT_KEY_UP)) {
+		if (sprite->animation() != STAND_UP_L && sprite->animation() != STAND_UP_R) {
+			this->last_animation = sprite->animation();
+			if (sprite->animation() == STAND_RIGHT) sprite->changeAnimation(STAND_UP_R);
+			else if (sprite->animation() == STAND_LEFT) sprite->changeAnimation(STAND_UP_L);
+		}
+	}
+	else if (Game::instance().getSpecialKey(GLUT_KEY_DOWN)) {
+		if (sprite->animation() != STAND_DOWN_R && sprite->animation() != STAND_DOWN_L) {
+			this->last_animation = sprite->animation();
+			if(sprite->animation() == STAND_RIGHT) sprite->changeAnimation(STAND_DOWN_R);
+			else if (sprite->animation() == STAND_LEFT) sprite->changeAnimation(STAND_DOWN_L);
+		}
+	}
 	else
 	{
 		if(sprite->animation() == MOVE_LEFT)
@@ -128,7 +158,7 @@ void Player::update(int deltaTime)
 		if(map->collisionMoveDown(posPlayer, glm::ivec2(16, 16), &posPlayer.y))
 		{
 			this->dash = true;
-			if(Game::instance().getSpecialKey(GLUT_KEY_UP))
+			if(Game::instance().getKey('c'))
 			{
 				bJumping = true;
 				jumpAngle = 0;
