@@ -8,7 +8,7 @@
 
 #define JUMP_ANGLE_STEP 4
 #define JUMP_HEIGHT 96
-#define FALL_STEP 4
+#define FALL_STEP 2
 
 
 enum PlayerAnims
@@ -21,7 +21,8 @@ void Player::init(const glm::ivec2 &tileMapPos, ShaderProgram &shaderProgram)
 {
 	bJumping = false;
 	spritesheet.loadFromFile("images/madelein.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	sprite = Sprite::createSprite(glm::ivec2(16, 16), glm::vec2(0.25, 0.25), &spritesheet, &shaderProgram);
+	//      aquetes variables haurien de ser 20, 20
+	sprite = Sprite::createSprite(glm::ivec2(20, 20), glm::vec2(0.25, 0.25), &spritesheet, &shaderProgram);
 	sprite->setNumberAnimations(8);
 	
 		sprite->setAnimationSpeed(STAND_LEFT, 8);
@@ -74,7 +75,7 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(MOVE_LEFT);
 		posPlayer.x -= 2;
 		
-		int aux = map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16));
+		int aux = map->collisionMoveLeft(posPlayer, glm::ivec2(20, 20));
 		if (aux == 2) {
 			posPlayer.x = 0;
 			posPlayer.y = 200;
@@ -96,7 +97,7 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(MOVE_RIGHT);
 		posPlayer.x += 2;
 
-		int aux = map->collisionMoveRight(posPlayer, glm::ivec2(16, 16));
+		int aux = map->collisionMoveRight(posPlayer, glm::ivec2(20, 20));
 		if (aux == 2) {
 			posPlayer.x = 0;
 			posPlayer.y = 200;
@@ -144,7 +145,7 @@ void Player::update(int deltaTime)
 		if (sprite->animation() == 0 || sprite->animation() == 6) {
 			if (bJumping) posPlayer.x -= 35;
 			else posPlayer.x -= 5;
-			int aux = map->collisionMoveLeft(posPlayer, glm::ivec2(16, 16));
+			int aux = map->collisionMoveLeft(posPlayer, glm::ivec2(20, 20));
 			if (aux == 2) {
 				posPlayer.x = 0;
 				posPlayer.y = 200;
@@ -160,7 +161,7 @@ void Player::update(int deltaTime)
 		else if (sprite->animation() == 1 || sprite->animation() == 7) {
 			if (bJumping) posPlayer.x += 35;
 			else posPlayer.x += 5;
-			int aux = map->collisionMoveRight(posPlayer, glm::ivec2(16, 16));
+			int aux = map->collisionMoveRight(posPlayer, glm::ivec2(20, 20));
 			if (aux == 2) {
 				posPlayer.x = 0;
 				posPlayer.y = 200;
@@ -175,7 +176,7 @@ void Player::update(int deltaTime)
 		}
 		else if (sprite->animation() == 2 || sprite->animation() == 3) {
 			posPlayer.y -= 50;
-			int aux = map->collisionMoveUp(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
+			int aux = map->collisionMoveUp(posPlayer, glm::ivec2(20, 20), &posPlayer.y);
 			if (aux == 2) {
 				posPlayer.x = 0;
 				posPlayer.y = 200;
@@ -191,6 +192,7 @@ void Player::update(int deltaTime)
 	if(bJumping)
 	{
 		jumpAngle += JUMP_ANGLE_STEP;
+		int posBefore = posPlayer.y;
 		
 		if(jumpAngle == 180)
 		{
@@ -201,21 +203,26 @@ void Player::update(int deltaTime)
 		{
 			posPlayer.y = int(startY - 50 * sin(3.14159f * jumpAngle / 180.f)); 
 			if (jumpAngle < 90) {
-				int aux = map->collisionMoveUp(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
+				int aux = map->collisionMoveUp(posPlayer, glm::ivec2(20, 20), &posPlayer.y);
 				if (aux == 2) {
+					climbLeft = false;
+					climbRight = false;
 					bJumping = false;
 					posPlayer.x = 0;
 					posPlayer.y = 200;
 				}
 				else if (aux == 1) {
+					climbLeft = false;
+					climbRight = false;
 					bJumping = false;
+					posPlayer.y = posBefore;
 				}
 				else if (aux == 0) {
 					bJumping = true;
 				}
 			}
 			if (jumpAngle >= 90) {
-				int aux = map->collisionMoveDown(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
+				int aux = map->collisionMoveDown(posPlayer, glm::ivec2(20, 20), &posPlayer.y);
 				if (aux == 2) {
 					climbLeft = false;
 					climbRight = false;
@@ -245,7 +252,7 @@ void Player::update(int deltaTime)
 			aux_posPlayer.y = posPlayer.y;
 			aux_posPlayer.x = posPlayer.x + 1;
 
-			int colRight = map->collisionMoveRight(aux_posPlayer, glm::ivec2(16, 16));
+			int colRight = map->collisionMoveRight(aux_posPlayer, glm::ivec2(20, 20));
 			if (colRight == 2) {
 				posPlayer.x = 0;
 				posPlayer.y = 200;
@@ -266,7 +273,7 @@ void Player::update(int deltaTime)
 			aux_posPlayer.y = posPlayer.y;
 			aux_posPlayer.x = posPlayer.x - 1;
 
-			int colLeft = map->collisionMoveLeft(aux_posPlayer, glm::ivec2(16, 16));
+			int colLeft = map->collisionMoveLeft(aux_posPlayer, glm::ivec2(20, 20));
 			if (colLeft == 2) {
 				posPlayer.x = 0;
 				posPlayer.y = 200;
@@ -290,7 +297,7 @@ void Player::update(int deltaTime)
 		
 		posPlayer.y += FALL_STEP;
 		
-		int aux = map->collisionMoveDown(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
+		int aux = map->collisionMoveDown(posPlayer, glm::ivec2(20, 20), &posPlayer.y);
 		if (aux == 2) {
 			climbLeft = false;
 			climbRight = false;
@@ -318,7 +325,7 @@ void Player::update(int deltaTime)
 		aux_posPlayer.y = posPlayer.y;
 		aux_posPlayer.x = posPlayer.x + 1;
 
-		int colRight = map->collisionMoveRight(aux_posPlayer, glm::ivec2(16, 16));
+		int colRight = map->collisionMoveRight(aux_posPlayer, glm::ivec2(20, 20));
 		if (colRight == 2) {
 			posPlayer.x = 0;
 			posPlayer.y = 200;
@@ -339,7 +346,7 @@ void Player::update(int deltaTime)
 		aux_posPlayer.y = posPlayer.y;
 		aux_posPlayer.x = posPlayer.x - 1;
 
-		int colLeft = map->collisionMoveLeft(aux_posPlayer, glm::ivec2(16, 16));
+		int colLeft = map->collisionMoveLeft(aux_posPlayer, glm::ivec2(20, 20));
 		if (colLeft == 2) {
 			posPlayer.x = 0;
 			posPlayer.y = 200;
