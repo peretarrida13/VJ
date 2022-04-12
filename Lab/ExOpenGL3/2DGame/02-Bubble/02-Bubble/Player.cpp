@@ -267,6 +267,8 @@ void Player::update(int deltaTime)
 					bJumping = true;
 					jumpAngle = 0;
 					startY = posPlayer.y;
+					sprite->changeAnimation(STAND_LEFT);
+
 				}
 			}
 
@@ -288,6 +290,8 @@ void Player::update(int deltaTime)
 					bJumping = true;
 					jumpAngle = 0;
 					startY = posPlayer.y;
+					sprite->changeAnimation(STAND_RIGHT);
+
 				}
 			}
 		}
@@ -335,11 +339,12 @@ void Player::update(int deltaTime)
 			if (Game::instance().getKey('c'))
 			{
 				cout << "dr" << endl;
-
 				climbRight = true;
 				bJumping = true;
 				jumpAngle = 0;
 				startY = posPlayer.y;
+				sprite->changeAnimation(STAND_LEFT);
+
 			}
 		}
 
@@ -360,6 +365,8 @@ void Player::update(int deltaTime)
 				bJumping = true;
 				jumpAngle = 0;
 				startY = posPlayer.y;
+
+				sprite->changeAnimation(STAND_RIGHT);
 			}
 		}
 		
