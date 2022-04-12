@@ -67,6 +67,9 @@ void Player::update(int deltaTime)
 	
 	if(Game::instance().getSpecialKey(GLUT_KEY_LEFT))
 	{
+		climbLeft = false;
+		climbRight = false;
+
 		if(sprite->animation() != MOVE_LEFT)
 			sprite->changeAnimation(MOVE_LEFT);
 		posPlayer.x -= 2;
@@ -85,6 +88,10 @@ void Player::update(int deltaTime)
 	}
 	else if(Game::instance().getSpecialKey(GLUT_KEY_RIGHT))
 	{
+
+		climbLeft = false;
+		climbRight = false;
+
 		if(sprite->animation() != MOVE_RIGHT)
 			sprite->changeAnimation(MOVE_RIGHT);
 		posPlayer.x += 2;
@@ -102,6 +109,9 @@ void Player::update(int deltaTime)
 		}
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_UP)) {
+		climbLeft = false;
+		climbRight = false;
+
 		if (sprite->animation() != STAND_UP_L && sprite->animation() != STAND_UP_R) {
 			this->last_animation = sprite->animation();
 			if (sprite->animation() == STAND_RIGHT) sprite->changeAnimation(STAND_UP_R);
@@ -109,6 +119,9 @@ void Player::update(int deltaTime)
 		}
 	}
 	else if (Game::instance().getSpecialKey(GLUT_KEY_DOWN)) {
+		climbLeft = false;
+		climbRight = false;
+
 		if (sprite->animation() != STAND_DOWN_R && sprite->animation() != STAND_DOWN_L) {
 			this->last_animation = sprite->animation();
 			if(sprite->animation() == STAND_RIGHT) sprite->changeAnimation(STAND_DOWN_R);
@@ -123,10 +136,10 @@ void Player::update(int deltaTime)
 			sprite->changeAnimation(STAND_RIGHT);
 	}
 
-	cout << sprite->animation() << endl;
-
 	if (Game::instance().getKey('x') && this->dash) {
 		this->dash = false;
+		climbLeft = false;
+		climbRight = false;
 
 		if (sprite->animation() == 0 || sprite->animation() == 6) {
 			if (bJumping) posPlayer.x -= 35;
@@ -204,11 +217,17 @@ void Player::update(int deltaTime)
 			if (jumpAngle >= 90) {
 				int aux = map->collisionMoveDown(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
 				if (aux == 2) {
+					climbLeft = false;
+					climbRight = false;
+
 					bJumping = false;
 					posPlayer.x = 0;
 					posPlayer.y = 200;
 				}
 				else if (aux == 1) {
+					climbLeft = false;
+					climbRight = false;
+
 					bJumping = false;
 				}
 				else if (aux == 0) {
@@ -216,24 +235,121 @@ void Player::update(int deltaTime)
 				}
 				
 			}
-				
+
+			//	PARA MIRAR SI HAY SE PUEDE HACER CLIMB:
+			// 1. CREAR NUEVO VECTOR CON UN +1 EN LA CORDENADA X (MIRAR SI HAY COLISION SI HAY COLISION I SE CLICA 'C' ACTIVAR CLIMB DERECHO
+			// 2. REPETIR PARA LA DERECHA
+			
+			glm::ivec2 aux_posPlayer;
+
+			aux_posPlayer.y = posPlayer.y;
+			aux_posPlayer.x = posPlayer.x + 1;
+
+			int colRight = map->collisionMoveRight(aux_posPlayer, glm::ivec2(16, 16));
+			if (colRight == 2) {
+				posPlayer.x = 0;
+				posPlayer.y = 200;
+			}
+			else if (colRight == 1)
+			{
+				if (Game::instance().getKey('c'))
+				{
+					cout << "ur" << endl;
+
+					climbRight = true;
+					bJumping = true;
+					jumpAngle = 0;
+					startY = posPlayer.y;
+				}
+			}
+
+			aux_posPlayer.y = posPlayer.y;
+			aux_posPlayer.x = posPlayer.x - 1;
+
+			int colLeft = map->collisionMoveLeft(aux_posPlayer, glm::ivec2(16, 16));
+			if (colLeft == 2) {
+				posPlayer.x = 0;
+				posPlayer.y = 200;
+			}
+			else if (colLeft == 1)
+			{
+				if (Game::instance().getKey('c'))
+				{
+					cout << "ul" << endl;
+
+					climbLeft = true;
+					bJumping = true;
+					jumpAngle = 0;
+					startY = posPlayer.y;
+				}
+			}
 		}
 	}
 	else
 	{
-	
+		
 		posPlayer.y += FALL_STEP;
+		
 		int aux = map->collisionMoveDown(posPlayer, glm::ivec2(16, 16), &posPlayer.y);
 		if (aux == 2) {
+			climbLeft = false;
+			climbRight = false;
+
 			bJumping = false;
 			posPlayer.x = 0;
 			posPlayer.y = 200;
 		}
 		else if (aux == 1)
 		{
+			climbLeft = false;
+			climbRight = false;
+
 			this->dash = true;
 			if (Game::instance().getKey('c'))
 			{
+				bJumping = true;
+				jumpAngle = 0;
+				startY = posPlayer.y;
+			}
+		}
+
+		glm::ivec2 aux_posPlayer;
+
+		aux_posPlayer.y = posPlayer.y;
+		aux_posPlayer.x = posPlayer.x + 1;
+
+		int colRight = map->collisionMoveRight(aux_posPlayer, glm::ivec2(16, 16));
+		if (colRight == 2) {
+			posPlayer.x = 0;
+			posPlayer.y = 200;
+		}
+		else if (colRight == 1)
+		{
+			if (Game::instance().getKey('c'))
+			{
+				cout << "dr" << endl;
+
+				climbRight = true;
+				bJumping = true;
+				jumpAngle = 0;
+				startY = posPlayer.y;
+			}
+		}
+
+		aux_posPlayer.y = posPlayer.y;
+		aux_posPlayer.x = posPlayer.x - 1;
+
+		int colLeft = map->collisionMoveLeft(aux_posPlayer, glm::ivec2(16, 16));
+		if (colLeft == 2) {
+			posPlayer.x = 0;
+			posPlayer.y = 200;
+		}
+		else if (colLeft == 1)
+		{
+			if (Game::instance().getKey('c'))
+			{
+				cout << "dl" << endl;
+				climbLeft = true;
 				bJumping = true;
 				jumpAngle = 0;
 				startY = posPlayer.y;
@@ -244,6 +360,14 @@ void Player::update(int deltaTime)
 	
 	if (posPlayer.x < 0) {
 		posPlayer.x = 0;
+	}
+
+	if (climbRight) {
+		posPlayer.x -= 2;
+	}
+	
+	if (climbLeft) {
+		posPlayer.x += 2;
 	}
 	
 	sprite->setPosition(glm::vec2(float(tileMapDispl.x + posPlayer.x), float(tileMapDispl.y + posPlayer.y)));

@@ -29,6 +29,8 @@ private:
 	Sprite *sprite;
 	TileMap *map;
 	bool dash = true;
+	bool climbRight = false;
+	bool climbLeft = false;
 
 	int last_animation;
 
