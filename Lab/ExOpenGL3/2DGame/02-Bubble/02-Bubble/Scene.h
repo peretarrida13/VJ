@@ -33,6 +33,9 @@ private:
 	ShaderProgram texProgram;
 	float currentTime;
 	glm::mat4 projection;
+	float screen_left = 0.0; //+320
+	float screen_right = -60.0; //-320
+	int past_level = 0;
 
 };
 

@@ -162,8 +162,14 @@ int TileMap::collisionMoveLeft(const glm::ivec2 &pos, const glm::ivec2 &size) co
 	for(int y=y0; y<=y1; y++)
 	{
 		if (map[y * mapSize.x + x] != 0) {
-			if (map[y * mapSize.x + x] == 4) return 2;
-			if (map[y * mapSize.x + x] != 1) return 1;
+			if (map[y * mapSize.x + x] == 4) {
+				if (!godMode) return 2;
+				else return 1;
+			}
+			if (map[y * mapSize.x + x] != 1 && map[y * mapSize.x + x] != 2 && map[y * mapSize.x + x] != 3) {
+
+				return 1;
+			}
 		}
 			
 	}
@@ -181,8 +187,14 @@ int TileMap::collisionMoveRight(const glm::ivec2 &pos, const glm::ivec2 &size) c
 	for(int y=y0; y<=y1; y++)
 	{
 		if (map[y * mapSize.x + x] != 0) {
-			if (map[y * mapSize.x + x] == 4) return 2;
-			if(map[y * mapSize.x + x] != 1) return 1;
+			if (map[y * mapSize.x + x] == 4) {
+				if (!godMode) return 2;
+				else return 1;
+			}
+
+			if (map[y * mapSize.x + x] != 1 && map[y * mapSize.x + x] != 2 && map[y * mapSize.x + x] != 3) {
+				return 1;
+			}
 		}
 	}
 	
@@ -203,9 +215,13 @@ int TileMap::collisionMoveDown(const glm::ivec2 &pos, const glm::ivec2 &size, in
 			if(*posY - tileSize * y + size.y <= 51)
 			{
 				if (map[y * mapSize.x + x] == 4) {
-					return 2;
+					if (!godMode) return 2;
+					else {
+						*posY = tileSize * y - size.y;
+						return 1;
+					}
 				}
-				if (map[y * mapSize.x + x] != 1) {
+				if (map[y * mapSize.x + x] != 1 && map[y * mapSize.x + x] != 2 && map[y * mapSize.x + x] != 3) {
 					*posY = tileSize * y - size.y;
 					return 1;
 				}
@@ -226,9 +242,15 @@ int TileMap::collisionMoveUp(const glm::ivec2& pos, const glm::ivec2& size, int*
 	for (int y = y0; y <= y1; y++)
 	{
 		if (map[y * mapSize.x + x] != 0) {
-			if (map[y * mapSize.x + x] == 4) return 2;
+			if (map[y * mapSize.x + x] == 4) {
+				if (!godMode) return 2;
+				else return 1;
+			}
 
-			if (map[y * mapSize.x + x] != 1) return 1;
+			if (map[y * mapSize.x + x] != 1 && map[y * mapSize.x + x] != 2 && map[y * mapSize.x + x] != 3) {
+
+				return 1;
+			}
 		}
 	}
 

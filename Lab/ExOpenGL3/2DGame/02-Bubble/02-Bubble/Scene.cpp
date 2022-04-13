@@ -34,12 +34,30 @@ void Scene::init()
 	player->init(glm::ivec2(SCREEN_X, SCREEN_Y), texProgram);
 	player->setPosition(glm::vec2(INIT_PLAYER_X_TILES * map->getTileSize(), INIT_PLAYER_Y_TILES * map->getTileSize()));
 	player->setTileMap(map);
-	projection = glm::ortho(0.f, float(SCREEN_WIDTH/1.5)-30, float(SCREEN_HEIGHT/1.5), 0.f);
+	//afegir variables que modificarem cada cop que es passa un nivell (posPlayer.y < 0)
+	projection = glm::ortho(screen_left, float(SCREEN_WIDTH/1.5) - screen_right, float(SCREEN_HEIGHT/1.75), 0.f); 
 	currentTime = 0.0f;
 }
 
 void Scene::update(int deltaTime)
 {
+	if (past_level != player->level) {
+		if (player->level != 0) {
+			screen_left = 320 * player->level;
+			screen_right = -320 * player->level;
+		}
+
+		screen_left = 32.0 + 320*player->level;
+		screen_right = -75.0 - 320*player->level;
+
+		projection = glm::ortho(screen_left, float(SCREEN_WIDTH / 1.5) - screen_right, float(SCREEN_HEIGHT / 1.75), 0.f);
+		cout << screen_left << ' ' << screen_right << endl;
+
+		past_level = player->level;
+
+		cout << past_level << ' ' << player->level << endl;
+	}
+
 	currentTime += deltaTime;
 	player->update(deltaTime);
 }
@@ -55,7 +73,7 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texProgram.setUniform2f("texCoordDispl", 0.f, 0.f);
 	map->render();
-	player->render();
+	if(player->level != 0) player->render();
 }
 
 void Scene::initShaders()
@@ -87,6 +105,3 @@ void Scene::initShaders()
 	vShader.free();
 	fShader.free();
 }
-
-
-
